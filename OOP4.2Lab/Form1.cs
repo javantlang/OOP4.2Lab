@@ -17,12 +17,12 @@ namespace OOP4._2Lab
             InitializeComponent();
         }
 
-        private void txtboxNumb2_KeyDown(object sender, KeyEventArgs e)
+        private void txtboxNumb1_KeyDown(object sender, KeyEventArgs e)
         {
 
         }
 
-        private void txtboxNumb1_KeyDown(object sender, KeyEventArgs e)
+        private void txtboxNumb2_KeyDown(object sender, KeyEventArgs e)
         {
 
         }
