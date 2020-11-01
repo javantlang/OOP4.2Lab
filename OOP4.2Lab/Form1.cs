@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -12,28 +13,19 @@ namespace OOP4._2Lab
 {
     public partial class View : Form
     {
+        Model model;
         public View()
         {
             InitializeComponent();
-        }
-
-        private void CheckValue(int number1, int number2)
-        {
-            if (number1 <= number2)
-            {
-                txtboxNumb1.Text = (number2 + 1).ToString();
-                numericNumb1.Value = number2 + 1;
-                richtxtboxNumb1.Text = (number2 + 1).ToString();
-            }
+            model = new Model();
+            model.changes += new System.EventHandler(this.UpdateForm);
         }
 
         private void txtboxNumb1_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                CheckValue(Int32.Parse(txtboxNumb1.Text), Int32.Parse(txtboxNumb2.Text));
-                numericNumb1.Value = Int32.Parse(txtboxNumb1.Text);
-                richtxtboxNumb1.Text = txtboxNumb1.Text;
+                model.setValue1 = Int32.Parse(txtboxNumb1.Text);
             }
         }
 
@@ -41,33 +33,25 @@ namespace OOP4._2Lab
         {
             if (e.KeyCode == Keys.Enter)
             {
-                CheckValue(Int32.Parse(txtboxNumb1.Text), Int32.Parse(txtboxNumb2.Text));
-                numericNumb2.Value = Int32.Parse(txtboxNumb2.Text);
-                richtxtboxNumb2.Text = txtboxNumb2.Text;
+                model.setValue2 = Int32.Parse(txtboxNumb2.Text);
             }
         }
 
         private void numericNumb1_ValueChanged(object sender, EventArgs e)
         {
-            CheckValue((Int32)numericNumb1.Value, (Int32)numericNumb2.Value);
-            txtboxNumb1.Text = numericNumb1.Value.ToString();
-            richtxtboxNumb1.Text = numericNumb1.Value.ToString();
+            model.setValue1 = (Int32)numericNumb1.Value;
         }
 
         private void numericNumb2_ValueChanged(object sender, EventArgs e)
         {
-            CheckValue((Int32)numericNumb1.Value, (Int32)numericNumb2.Value);
-            txtboxNumb2.Text = numericNumb2.Value.ToString();
-            richtxtboxNumb2.Text = numericNumb2.Value.ToString();
+            model.setValue2 = (Int32)numericNumb2.Value;
         }
 
         private void richtxtboxNumb1_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                CheckValue(Int32.Parse(richtxtboxNumb1.Text), Int32.Parse(richtxtboxNumb2.Text));
-                txtboxNumb1.Text = richtxtboxNumb1.Text;
-                numericNumb1.Value = Int32.Parse(richtxtboxNumb1.Text);
+                model.setValue1 = Int32.Parse(richtxtboxNumb1.Text);
             }
         }
 
@@ -75,10 +59,69 @@ namespace OOP4._2Lab
         {
             if (e.KeyCode == Keys.Enter)
             {
-                CheckValue(Int32.Parse(richtxtboxNumb1.Text), Int32.Parse(richtxtboxNumb2.Text));
-                txtboxNumb2.Text = richtxtboxNumb2.Text;
-                numericNumb2.Value = Int32.Parse(richtxtboxNumb2.Text);
+                model.setValue2 = Int32.Parse(richtxtboxNumb2.Text);
             }
+        }
+
+        private void UpdateForm(object sender, EventArgs e)
+        {
+            richtxtboxNumb1.Text = model.getValue1.ToString();
+            txtboxNumb1.Text = model.getValue1.ToString();
+            numericNumb1.Value = model.getValue1;
+
+            richtxtboxNumb2.Text = model.getValue2.ToString();
+            txtboxNumb2.Text = model.getValue2.ToString();
+            numericNumb2.Value = model.getValue2;
+        }
+    }
+    public class Model
+    {
+        private int number1;
+        private int number2;
+        public System.EventHandler changes;
+
+        public Model()
+        {
+            number1 = 1;
+            number2 = 0;
+        }
+
+        public int setValue1
+        {
+            set
+            {
+                if (value <= number2)
+                {
+                    number1 = number2 + 1;
+                }
+                else
+                    number1 = value;
+
+                changes.Invoke(this, null);
+            }
+        }
+        public int setValue2
+        {
+            set
+            {
+                if (value >= number1)
+                {
+                    number2 = value;
+                    number1 = number2 + 1;
+                }
+                else
+                    number2 = value;
+
+                changes.Invoke(this, null);
+            }
+        }
+        public int getValue1
+        {
+            get => number1;
+        }
+        public int getValue2
+        {
+            get => number2;
         }
     }
 }
