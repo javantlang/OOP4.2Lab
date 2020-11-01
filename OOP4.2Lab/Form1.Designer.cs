@@ -41,9 +41,19 @@
             // numericNumb1
             // 
             this.numericNumb1.Location = new System.Drawing.Point(13, 13);
+            this.numericNumb1.Maximum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
             this.numericNumb1.Name = "numericNumb1";
             this.numericNumb1.Size = new System.Drawing.Size(120, 20);
             this.numericNumb1.TabIndex = 0;
+            this.numericNumb1.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numericNumb1.ValueChanged += new System.EventHandler(this.numericNumb1_ValueChanged);
             // 
             // txtboxNumb1
@@ -52,11 +62,17 @@
             this.txtboxNumb1.Name = "txtboxNumb1";
             this.txtboxNumb1.Size = new System.Drawing.Size(120, 20);
             this.txtboxNumb1.TabIndex = 1;
+            this.txtboxNumb1.Text = "1";
             this.txtboxNumb1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtboxNumb1_KeyDown);
             // 
             // numericNumb2
             // 
             this.numericNumb2.Location = new System.Drawing.Point(219, 13);
+            this.numericNumb2.Maximum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
             this.numericNumb2.Name = "numericNumb2";
             this.numericNumb2.Size = new System.Drawing.Size(120, 20);
             this.numericNumb2.TabIndex = 2;
@@ -68,6 +84,7 @@
             this.txtboxNumb2.Name = "txtboxNumb2";
             this.txtboxNumb2.Size = new System.Drawing.Size(120, 20);
             this.txtboxNumb2.TabIndex = 3;
+            this.txtboxNumb2.Text = "0";
             this.txtboxNumb2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtboxNumb2_KeyDown);
             // 
             // richtxtboxNumb1
@@ -76,7 +93,7 @@
             this.richtxtboxNumb1.Name = "richtxtboxNumb1";
             this.richtxtboxNumb1.Size = new System.Drawing.Size(120, 36);
             this.richtxtboxNumb1.TabIndex = 4;
-            this.richtxtboxNumb1.Text = "";
+            this.richtxtboxNumb1.Text = "1";
             this.richtxtboxNumb1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.richtxtboxNumb1_KeyDown);
             // 
             // richtxtboxNumb2
@@ -85,7 +102,7 @@
             this.richtxtboxNumb2.Name = "richtxtboxNumb2";
             this.richtxtboxNumb2.Size = new System.Drawing.Size(120, 36);
             this.richtxtboxNumb2.TabIndex = 5;
-            this.richtxtboxNumb2.Text = "";
+            this.richtxtboxNumb2.Text = "0";
             this.richtxtboxNumb2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.richtxtboxNumb2_KeyDown);
             // 
             // View
